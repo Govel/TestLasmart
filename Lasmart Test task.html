@@ -1,156 +1,179 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <base href="http://demos.telerik.com/kendo-ui/grid/angular">
-    <style>html { font-size: 12px; font-family: Arial, Helvetica, sans-serif; }</style>
-    <title></title>
-    <link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.common.min.css" rel="stylesheet" />
-    <link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.default.min.css" rel="stylesheet" />
-    <link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.dataviz.min.css" rel="stylesheet" />
-    <link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.dataviz.default.min.css" rel="stylesheet" />
-    <script src="http://cdn.kendostatic.com/2014.2.903/js/jquery.min.js"></script>
-    <script src="http://cdn.kendostatic.com/2014.2.903/js/angular.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/bower-angular-translate/2.0.1/angular-translate.min.js"></script>
-    <script src="http://cdn.kendostatic.com/2014.2.903/js/kendo.all.min.js"></script>
-    <script src="http://cdn.kendostatic.com/2014.2.903/js/cultures/kendo.culture.de-DE.min.js"></script>
-    <script src="http://cdn.kendostatic.com/2014.2.903/js/cultures/kendo.culture.en-US.min.js"></script>
-    <script src="http://cdn.kendostatic.com/2014.2.903/js/cultures/kendo.culture.ru-RU.min.js"></script>
-  </head>
-  <body>
-    <div id="example" ng-app="KendoDemos">
-      <div ng-controller="MyCtrl">
-        <p>{{ 'TITLE' | translate }}</p>
-        <p>{{ 'FOO' | translate }}</p>
 
-        <!-- the DropDown is used to change the culture -->
-        <kendo-dropdownlist options="dropDownOptions" ng-model="lang"></kendo-dropdownlist>
+<head>
+  <base href="http://demos.telerik.com/kendo-ui/grid/angular">
+  <style>
+    html {
+      font-size: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+  <title></title>
+  <link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.common.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.default.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.dataviz.min.css" rel="stylesheet" />
+  <link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.dataviz.default.min.css" rel="stylesheet" />
+  <script src="http://cdn.kendostatic.com/2014.2.903/js/jquery.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2014.2.903/js/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/bower-angular-translate/2.0.1/angular-translate.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2014.2.903/js/kendo.all.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2014.2.903/js/cultures/kendo.culture.de-DE.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2014.2.903/js/cultures/kendo.culture.en-US.min.js"></script>
+  <script src="http://cdn.kendostatic.com/2014.2.903/js/cultures/kendo.culture.ru-RU.min.js"></script>
+</head>
 
-        <!-- k-rebind="mainGridOptions.language" is used to force the widget update -->
-        <kendo-grid options="mainGridOptions" k-rebind="mainGridOptions.language"></kendo-grid>
+<body>
+  <div id="example" ng-app="KendoDemos">
+    <div ng-controller="MyCtrl">
+      <p>{{ 'TITLE' | translate }}</p>
+      <p>{{ 'FOO' | translate }}</p>
 
-        <!-- k-rebind="calendarOptions.culture" is used to force the widget update -->
-        <kendo-calendar options="calendarOptions" k-rebind="calendarOptions.culture"></kendo-calendar>
-      </div>
+      <!-- the DropDown is used to change the culture -->
+      <kendo-dropdownlist options="dropDownOptions" ng-model="lang"></kendo-dropdownlist>
+
+      <!-- k-rebind="mainGridOptions.language" is used to force the widget update -->
+      <kendo-grid options="mainGridOptions" k-rebind="mainGridOptions.language"></kendo-grid>
+
+      <!-- k-rebind="calendarOptions.culture" is used to force the widget update -->
+      <kendo-calendar options="calendarOptions" k-rebind="calendarOptions.culture"></kendo-calendar>
     </div>
+  </div>
 
-    <script>
+  <script>
 
-      let language = [{}];
+    let language = [{}];
 
-      var app = angular.module("KendoDemos", [ "kendo.directives", "pascalprecht.translate"]);
+    var app = angular.module("KendoDemos", ["kendo.directives", "pascalprecht.translate"]);
 
-      //set up the language provider (http://angular-translate.github.io/docs/#/guide)
-      app.config(['$translateProvider', function ($translateProvider) {
-        $translateProvider.translations('en-US', {
-          'TITLE': 'Hello',
-          'FOO': 'This is a paragraph',
-          'FirstName' : 'First Name',
-          'LastName' : 'Last Name',
-          'Country' : 'Country',
-          'City' : 'City',
-          'Extension' : 'Extension'
-        });
+    //set up the language provider (http://angular-translate.github.io/docs/#/guide)
+    app.config(['$translateProvider', function ($translateProvider) {
+      $translateProvider.translations('en-US', {
+        'TITLE': 'Hello',
+        'FOO': 'This is a paragraph',
+        'FirstName': 'First Name',
+        'LastName': 'Last Name',
+        'Country': 'Country',
+        'City': 'City',
+        'Extension': 'Extension',
+        'Birthdate': 'Birthdate',
+        'EmploymentDate': 'Employment Date'
+      });
 
-        $translateProvider.translations('de-DE', {
-          'TITLE': 'Hallo',
-          'FOO': 'Dies ist ein Paragraph',
-          'FirstName' : 'Vorname',
-          'LastName' : 'Nachname',
-          'Country' : 'Land',
-          'City' : 'Stadt',
-          'Extension' : 'Erweiterung'
-        });
+      $translateProvider.translations('de-DE', {
+        'TITLE': 'Hallo',
+        'FOO': 'Dies ist ein Paragraph',
+        'FirstName': 'Vorname',
+        'LastName': 'Nachname',
+        'Country': 'Land',
+        'City': 'Stadt',
+        'Extension': 'Erweiterung',
+        'Birthdate': 'Geburtstag',
+        'EmploymentDate': 'Anstellungsdatum'
+      });
 
-        $translateProvider.translations('ru-RU', {
-          'TITLE': 'Здравствуйте',
-          'FOO': 'Это параграф',
-          'FirstName' : 'Имя',
-          'LastName' : 'Фамилия',
-          'Country' : 'Страна',
-          'City' : 'Город',
-          'Extension' : 'Индекс'
-        });
+      $translateProvider.translations('ru-RU', {
+        'TITLE': 'Здравствуйте',
+        'FOO': 'Это параграф',
+        'FirstName': 'Имя',
+        'LastName': 'Фамилия',
+        'Country': 'Страна',
+        'City': 'Город',
+        'Birthdate': 'День рождения',
+        'EmploymentDate': 'Дата приема на работу'
+      });
 
-        $translateProvider.preferredLanguage('en-US');
-      }]);
+      $translateProvider.preferredLanguage('en-US');
+    }]);
 
-      function MyCtrl($scope, $translate) {
+    function MyCtrl($scope, $translate) {
 
-        $scope.lang = "en-US";
+      $scope.lang = "en-US";
 
-        $scope.calendarOptions = {
-          culture: "en-US"
-        }
-
-        $scope.dropDownOptions = {
-          dataValueField: "value",
-          dataTextField: "text",
-          dataSource : {
-            data: [{value: "en-US", text: "English"}, {value: "de-DE", text:"German"}, {value: "ru-RU", text:"Русский"}]
-          },
-          change: function(){
-
-            /* The kendo.culture.xx-XX.js files can be pre-loaded in the <head> section of the document,
-                    but the kendo.messages.xx-XX.js file should be loaded on demand when the language is about to change */
-
-            /* We are using the jQuery.getScript method to load the messages file 
-                    and use the callback function to change the kendo culture, kendo messages and angular-translate language */
-
-            $.getScript("http://cdn.kendostatic.com/2014.2.903/js/messages/kendo.messages." + $scope.lang + ".min.js", function() {
-
-              /* $scope.$apply should be used in order to notify the $scope for language change */
-              $scope.$apply(function(){
-
-                $translate.use($scope.lang); //change angular-translate language
-                kendo.culture($scope.lang); //change kendo culture
-
-                /* we use dummy language option in order to force the Grid to rebind */
-                $scope.mainGridOptions.language = $scope.lang;
-
-                /* we change the calendar widget culture option in order to force the Calendar to rebind */
-                $scope.calendarOptions.culture = $scope.lang;
-
-              })
-            });
-          }
-        }
-
-        $scope.mainGridOptions = {
-          dataSource: {
-            type: "odata",
-            transport: {
-              read: "http://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
-            },
-            pageSize: 5, // Здесь меняется количество записей
-            serverPaging: true,
-            serverSorting: true
-          },
-          sortable: true,
-          pageable: true,
-          language: "english",
-          columns: [{
-            field: "FirstName",
-            title: "{{ 'FirstName' | translate }}",
-            width: "120px"
-          },{
-            field: "LastName",
-            title: "{{ 'LastName' | translate }}",
-            width: "120px"
-          },{
-            field: "Country",
-            title: "{{ 'Country' | translate }}",
-            width: "120px"
-          },{
-            field: "City",
-            title: "{{ 'City' | translate }}",
-            width: "120px"
-          },{
-            field: "Extension",
-            title: "{{ 'Extension' | translate }}",
-            width: "120px"
-          }]
-        };
+      $scope.calendarOptions = {
+        culture: "en-US"
       }
-    </script>
-  </body>
+
+      $scope.dropDownOptions = {
+        dataValueField: "value",
+        dataTextField: "text",
+        dataSource: {
+          data: [{ value: "en-US", text: "English" }, { value: "de-DE", text: "German" }, { value: "ru-RU", text: "Русский" }]
+        },
+        change: function () {
+
+          /* The kendo.culture.xx-XX.js files can be pre-loaded in the <head> section of the document,
+                  but the kendo.messages.xx-XX.js file should be loaded on demand when the language is about to change */
+
+          /* We are using the jQuery.getScript method to load the messages file 
+                  and use the callback function to change the kendo culture, kendo messages and angular-translate language */
+
+          $.getScript("http://cdn.kendostatic.com/2014.2.903/js/messages/kendo.messages." + $scope.lang + ".min.js", function () {
+
+            /* $scope.$apply should be used in order to notify the $scope for language change */
+            $scope.$apply(function () {
+
+              $translate.use($scope.lang); //change angular-translate language
+              kendo.culture($scope.lang); //change kendo culture
+
+              /* we use dummy language option in order to force the Grid to rebind */
+              $scope.mainGridOptions.language = $scope.lang;
+
+              /* we change the calendar widget culture option in order to force the Calendar to rebind */
+              $scope.calendarOptions.culture = $scope.lang;
+
+            })
+          });
+        }
+      }
+
+      $scope.mainGridOptions = {
+        dataSource: {
+          type: "odata",
+          transport: {
+            read: "http://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+          },
+          pageSize: 5,
+          serverPaging: true,
+          serverSorting: true
+        },
+        sortable: true,
+        pageable: {
+          pageSizes: true,
+        },
+        language: "english",
+        columns: [{
+          field: "FirstName",
+          title: "{{ 'FirstName' | translate }}",
+          width: "120px"
+        }, {
+          field: "LastName",
+          title: "{{ 'LastName' | translate }}",
+          width: "120px"
+        }, {
+          field: "Country",
+          title: "{{ 'Country' | translate }}",
+          width: "120px"
+        }, {
+          field: "City",
+          title: "{{ 'City' | translate }}",
+          width: "120px"
+        }, {
+          field: "Extension",
+          title: "{{ 'Extension' | translate }}",
+          width: "120px"
+        }, {
+          field: "Birthdate",
+          title: "{{ 'Birthdate' | translate }}",
+          width: "120px"
+        }, {
+          field: "EmploymentDate",
+          title: "{{ 'EmploymentDate' | translate }}",
+          width: "120px"
+        }]
+      };
+    }
+  </script>
+</body>
+
 </html>
