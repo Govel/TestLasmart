@@ -14,6 +14,7 @@
     <script src="http://cdn.kendostatic.com/2014.2.903/js/kendo.all.min.js"></script>
     <script src="http://cdn.kendostatic.com/2014.2.903/js/cultures/kendo.culture.de-DE.min.js"></script>
     <script src="http://cdn.kendostatic.com/2014.2.903/js/cultures/kendo.culture.en-US.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.2.903/js/cultures/kendo.culture.ru-RU.min.js"></script>
   </head>
   <body>
     <div id="example" ng-app="KendoDemos">
@@ -33,23 +34,41 @@
     </div>
 
     <script>
+
+      let language = [{}];
+
       var app = angular.module("KendoDemos", [ "kendo.directives", "pascalprecht.translate"]);
 
       //set up the language provider (http://angular-translate.github.io/docs/#/guide)
       app.config(['$translateProvider', function ($translateProvider) {
         $translateProvider.translations('en-US', {
           'TITLE': 'Hello',
-          'FOO': 'This is a paragraph'
+          'FOO': 'This is a paragraph',
+          'FirstName' : 'First Name',
+          'LastName' : 'Last Name',
+          'Country' : 'Country',
+          'City' : 'City',
+          'Extension' : 'Extension'
         });
 
         $translateProvider.translations('de-DE', {
           'TITLE': 'Hallo',
-          'FOO': 'Dies ist ein Paragraph'
+          'FOO': 'Dies ist ein Paragraph',
+          'FirstName' : 'Vorname',
+          'LastName' : 'Nachname',
+          'Country' : 'Land',
+          'City' : 'Stadt',
+          'Extension' : 'Erweiterung'
         });
 
         $translateProvider.translations('ru-RU', {
           'TITLE': 'Здравствуйте',
-          'FOO': 'Это параграф'
+          'FOO': 'Это параграф',
+          'FirstName' : 'Имя',
+          'LastName' : 'Фамилия',
+          'Country' : 'Страна',
+          'City' : 'Город',
+          'Extension' : 'Индекс'
         });
 
         $translateProvider.preferredLanguage('en-US');
@@ -67,7 +86,7 @@
           dataValueField: "value",
           dataTextField: "text",
           dataSource : {
-            data: [{value: "en-US", text: "English"}, {value: "de-DE", text:"German"}]
+            data: [{value: "en-US", text: "English"}, {value: "de-DE", text:"German"}, {value: "ru-RU", text:"Русский"}]
           },
           change: function(){
 
@@ -102,7 +121,7 @@
             transport: {
               read: "http://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
             },
-            pageSize: 5,
+            pageSize: 5, // Здесь меняется количество записей
             serverPaging: true,
             serverSorting: true
           },
@@ -111,20 +130,24 @@
           language: "english",
           columns: [{
             field: "FirstName",
-            title: "First Name",
+            title: "{{ 'FirstName' | translate }}",
             width: "120px"
           },{
             field: "LastName",
-            title: "Last Name",
+            title: "{{ 'LastName' | translate }}",
             width: "120px"
           },{
             field: "Country",
+            title: "{{ 'Country' | translate }}",
             width: "120px"
           },{
             field: "City",
+            title: "{{ 'City' | translate }}",
             width: "120px"
           },{
-            field: "Extension"
+            field: "Extension",
+            title: "{{ 'Extension' | translate }}",
+            width: "120px"
           }]
         };
       }
