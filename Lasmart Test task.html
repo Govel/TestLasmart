@@ -42,8 +42,6 @@
 
   <script>
 
-    let language = [{}];
-
     var app = angular.module("KendoDemos", ["kendo.directives", "pascalprecht.translate"]);
 
     //set up the language provider (http://angular-translate.github.io/docs/#/guide)
@@ -56,8 +54,8 @@
         'Country': 'Country',
         'City': 'City',
         'Extension': 'Extension',
-        'Birthdate': 'Birthdate',
-        'EmploymentDate': 'Employment Date'
+        'BirthDate': 'Birth Date',
+        'HireDate': 'Hire Date'
       });
 
       $translateProvider.translations('de-DE', {
@@ -68,8 +66,8 @@
         'Country': 'Land',
         'City': 'Stadt',
         'Extension': 'Erweiterung',
-        'Birthdate': 'Geburtstag',
-        'EmploymentDate': 'Anstellungsdatum'
+        'BirthDate': 'Geburtstag',
+        'HireDate': 'Anstellungsdatum'
       });
 
       $translateProvider.translations('ru-RU', {
@@ -79,8 +77,9 @@
         'LastName': 'Фамилия',
         'Country': 'Страна',
         'City': 'Город',
-        'Birthdate': 'День рождения',
-        'EmploymentDate': 'Дата приема на работу'
+        'Extension': 'Расширение',
+        'BirthDate': 'День рождения',
+        'HireDate': 'Дата приема на работу'
       });
 
       $translateProvider.preferredLanguage('en-US');
@@ -131,7 +130,9 @@
         dataSource: {
           type: "odata",
           transport: {
-            read: "http://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees"
+            read: {
+              url: "http://demos.telerik.com/kendo-ui/service/Northwind.svc/Employees",
+            }
           },
           pageSize: 5,
           serverPaging: true,
@@ -163,12 +164,16 @@
           title: "{{ 'Extension' | translate }}",
           width: "120px"
         }, {
-          field: "Birthdate",
-          title: "{{ 'Birthdate' | translate }}",
+          field: "BirthDate",
+          type: "date",
+          format: "{0:d}",
+          title: "{{ 'BirthDate' | translate }}",
           width: "120px"
         }, {
-          field: "EmploymentDate",
-          title: "{{ 'EmploymentDate' | translate }}",
+          field: "HireDate",
+          type: "date",
+          format: "{0:d}",
+          title: "{{ 'HireDate' | translate }}",
           width: "120px"
         }]
       };
